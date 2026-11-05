@@ -26,6 +26,8 @@ InstanceIO (Iio) is a revolutionary component-based PHP framework designed for r
 - **Docker-Ready**: Full development and production container support out of the box
 - **Configuration-Driven**: Single `config.json` file controls all aspects of your application
 - **Command Line Interface**: Powerful CLI tools for development, building, and deployment
+- **IPFS Deployment**: Publish validated static builds with Kubo, verify local CIDs, and use remote pinning providers
+- **Template Hub Direction**: Open base templates, reusable components, and AI-ready knowledge context
 
 ## Documentation Structure
 
@@ -56,6 +58,8 @@ InstanceIO (Iio) is a revolutionary component-based PHP framework designed for r
 
 ### Deployment & Operations
 - [Static Deployment](DEPLOYMENT_STATIC.md) - Deploying to S3, Netlify, Vercel, etc.
+- [IPFS Deployment](IPFS.md) - Kubo, immutable CIDs, local serving, and remote pinning
+- [Templates and Hub](TEMPLATES_HUB.md) - Base templates, open components, and AI-ready knowledge context
 - [Dynamic Deployment](DEPLOYMENT_DYNAMIC.md) - Traditional PHP server deployment
 - [Docker Deployment](DEPLOYMENT_DOCKER.md) - Container-based deployment
 - [Performance Optimization](PERFORMANCE.md) - Caching and optimization strategies

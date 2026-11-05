@@ -30,7 +30,9 @@ InstanceIO is a proprietary, component-based PHP framework designed for rapid de
 3. **Components** (`COMPONENTS.md`) - Building reusable UI elements
 4. **CLI Reference** (`CLI_REFERENCE.md`) - Command line interface guide
 5. **Deployment** (`DEPLOYMENT.md`) - Production deployment strategies
-6. **Licensing** (`LICENSING.md`) - How to obtain the framework
+6. **IPFS Deployment** (`IPFS.md`) - Kubo, immutable CIDs, local serving, and remote pinning
+7. **Templates and Hub** (`TEMPLATES_HUB.md`) - Open base templates, reusable components, and AI-ready knowledge context
+8. **Licensing** (`LICENSING.md`) - How to obtain the framework
 
 ### Advanced Topics
 - Template system and .iio syntax
@@ -266,3 +268,14 @@ Whether you're building a simple marketing site or a complex enterprise applicat
 *InstanceIO - Build faster, deploy smarter, scale effortlessly.*
 *© 2024 Senicity. All rights reserved.*
 *Proprietary software - Unauthorized use prohibited.*
+
+## Current Deployment and Template Features
+
+The current framework documentation also covers:
+
+- Static builds that publish the contents of `dist/` as the CID root.
+- Local CID verification with `Ipfs check` and local gateway startup with `Ipfs serve`.
+- Remote pinning setup, pin submission, status checks, and automatic remote pinning during deployment.
+- Static HTMx/API routes generated from real endpoints during the build.
+- The planned open Templates Hub for reusable components and base templates.
+- AI-ready template source and planned AI knowledge-base context.

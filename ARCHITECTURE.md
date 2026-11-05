@@ -344,3 +344,11 @@ InstanceIO employs an agent-based architecture where different "agents" handle s
 ---
 
 *This architecture provides a solid foundation for building modern web applications with excellent performance, security, and developer experience.*
+
+## Current Static and Template Architecture
+
+The current build pipeline validates and renders every route in `sitemap.json`. API responses that an HTMx static demo needs can be included as build routes, producing files such as `dist/api/example/index.html`. This preserves the original request path while replacing runtime PHP execution with a build-time HTML response.
+
+The IPFS pipeline then adds the contents of `dist/` as the CID root, verifies the root index, and optionally submits the CID to a remote pinning service. Local daemon availability and remote provider availability are separate concerns.
+
+The planned Templates Hub extends the component architecture with an open library of base templates and reusable components. Hub entries can expose source structure, component metadata, usage guidance, and AI knowledge-base context without hiding the underlying PHP, HTML, CSS, route, or configuration files.
