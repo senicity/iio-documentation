@@ -279,3 +279,29 @@ InstanceIO Framework is proprietary software. Your license includes:
 ---
 
 *Start building amazing web applications with InstanceIO today!*
+
+## Publish a Static Site to IPFS
+
+After the application runs dynamically, build and publish its static output:
+
+```bash
+php console/cmd.php Ipfs setup
+php console/cmd.php Ipfs deploy --build
+```
+
+The contents of `dist/` become the CID root. Verify and serve the deployment locally with:
+
+```bash
+php console/cmd.php Ipfs check --cid=<CID>
+php console/cmd.php Ipfs serve --cid=<CID>
+```
+
+Use [IPFS Deployment](IPFS.md) to configure remote pinning and public availability.
+
+## Templates and the Hub
+
+InstanceIO templates are customizable starting points made from PHP classes, HTML templates, CSS, routes, and configuration. The planned Hub will provide an open library of base templates and reusable components for new projects.
+
+The Hub will also provide structured metadata and planned AI knowledge-base context so AI tools can discover, explain, and adapt components while developers retain control of the source.
+
+Read [Templates and Hub](TEMPLATES_HUB.md) for the current scope and status.

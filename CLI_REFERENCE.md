@@ -121,7 +121,75 @@ php console/cmd.php Build --clean
 php console/cmd.php Build --verbose
 ```
 
-### 3. Docker Commands
+### 3. IPFS Commands
+
+IIO can publish a validated static build through a locally installed Kubo `ipfs` executable. The contents of `dist/` become the CID root.
+
+#### Setup and status
+```bash
+php console/cmd.php Ipfs setup
+php console/cmd.php Ipfs status
+```
+
+#### Build, verify, and serve
+```bash
+# Build and publish the current site
+php console/cmd.php Ipfs deploy --build
+
+# Verify an existing local CID
+php console/cmd.php Ipfs check --cid=<CID>
+
+# Verify and start the local Kubo gateway
+php console/cmd.php Ipfs serve --cid=<CID>
+```
+
+A combined build is available at:
+
+```text
+/ipfs/<CID>/index.html
+```
+
+The local gateway is normally:
+
+```text
+http://127.0.0.1:8080/ipfs/<CID>/
+```
+
+`Ipfs serve` verifies the local pin, directory, and index before starting the foreground daemon. Keep the terminal running and press `Ctrl-C` to stop it.
+
+#### Remote pinning
+
+Configure a remote provider using an environment variable for the secret:
+
+```bash
+read -s PINATA_JWT
+export PINATA_JWT
+
+php console/cmd.php Ipfs remote setup \
+  --service=pinata \
+  --endpoint=https://api.pinata.cloud/psa \
+  --token-env=PINATA_JWT
+```
+
+Pin and inspect a CID:
+
+```bash
+php console/cmd.php Ipfs remote pin --service=pinata --cid=<CID>
+php console/cmd.php Ipfs remote status --service=pinata --cid=<CID>
+```
+
+Submit new deployments automatically after local verification:
+
+```bash
+php console/cmd.php Ipfs deploy \
+  --build \
+  --remote \
+  --remote-service=pinata
+```
+
+Use `--remote-background` to queue the request without waiting for the provider. Do not put the token in `config.json` or source control. See [IPFS Deployment](IPFS.md) for CID layout, static API routes, NAT limitations, and gateway guidance.
+
+### 4. Docker Commands
 Manage Docker development and production environments.
 
 #### Docker Build
@@ -190,7 +258,7 @@ php console/cmd.php Docker destroy prod-app
 php console/cmd.php Docker destroy prod-html
 ```
 
-### 4. System Commands
+### 5. System Commands
 Framework management and utilities.
 
 #### Test

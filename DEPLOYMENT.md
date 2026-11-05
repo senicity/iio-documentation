@@ -654,3 +654,46 @@ chown -R www-data:www-data /var/www/html
 ---
 
 *InstanceIO - Deploy with confidence, scale with ease.*
+
+## IPFS Deployment
+
+InstanceIO supports native Kubo deployment for validated static builds. The build output is added without a wrapper, so the CID root contains `index.html` directly.
+
+```bash
+php console/cmd.php Ipfs setup
+php console/cmd.php Ipfs deploy --build
+php console/cmd.php Ipfs serve --cid=<CID>
+```
+
+The local gateway is normally:
+
+```text
+http://127.0.0.1:8080/ipfs/<CID>/
+```
+
+A local pin is not a public hosting service. For persistent availability, configure a remote pinning provider:
+
+```bash
+read -s PINATA_JWT
+export PINATA_JWT
+
+php console/cmd.php Ipfs remote setup \
+  --service=pinata \
+  --endpoint=https://api.pinata.cloud/psa \
+  --token-env=PINATA_JWT
+
+php console/cmd.php Ipfs deploy \
+  --build \
+  --remote \
+  --remote-service=pinata
+```
+
+Check a remote pin with:
+
+```bash
+php console/cmd.php Ipfs remote status \
+  --service=pinata \
+  --cid=<CID>
+```
+
+Keep API tokens in environment variables. Do not commit them to application configuration or source control. IPFS cannot execute PHP controllers; dynamic API routes must be rendered into the static build or remain on a separate HTTPS service. Read [IPFS Deployment](IPFS.md) for the complete workflow.
